@@ -74,9 +74,3 @@ powershell_script 'Giving a local admin access to IE' do
     Set-UACLevel 2
   EOH
 end
-
-
-reboot 'Request Reboot after changing registry' do
-  action :request_reboot
-  only_if (node['windows-10']['reboot'])
-end 

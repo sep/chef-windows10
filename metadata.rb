@@ -4,7 +4,7 @@ maintainer_email 'rmnowadly@sep.com'
 license 'Apache License 2.0'
 description 'Installs/Configures windows10'
 long_description 'Installs/Configures windows10'
-version '0.1.0'
+version '0.1.1'
 
 supports 'windows', '10'
 

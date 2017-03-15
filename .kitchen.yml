@@ -32,5 +32,4 @@ suites:
       inspec_tests:
         - test/smoke/default
     attributes:
-      windows-10:
-        reboot: true
+    
