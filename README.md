@@ -14,7 +14,7 @@ This cookbook has recipes for configuring Windows 10.
 
 # Attributes
 
-* `node['windows-10']['reboot']` -  Defaults to `false`.
+*No attributes defined*
 
 # Recipes
 
