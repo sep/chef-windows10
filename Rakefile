@@ -28,7 +28,7 @@ namespace :style do
 end
 
 desc 'Run all style checks'
-task style: ['style:chef'] #Omitting RuboStyle for now due to weird behavior on Windows
+task style: ['style:chef', 'style:ruby']
 
 # ChefSpec
 begin
@@ -52,39 +52,38 @@ namespace :integration do
   end
 end
 
-namespace :berkshelf do 
+namespace :berkshelf do
   desc 'Install berkshelf cookbooks locally'
-  task :install do |t, args|
+  task :install do
     require 'berkshelf'
     require 'berkshelf/berksfile'
     current_dir = File.expand_path('../', __FILE__)
-    berksfile_path = File.join(current_dir, 'Berksfile')  
-    berksfile = Berkshelf::Berksfile.from_file(berksfile_path)   
+    berksfile_path = File.join(current_dir, 'Berksfile')
+    berksfile = Berkshelf::Berksfile.from_file(berksfile_path)
     berksfile.install
   end
-  
-  task :upload do |t, args|
+
+  task :upload do
     require 'berkshelf'
     require 'berkshelf/berksfile'
     current_dir = File.expand_path('../', __FILE__)
-    berksfile_path = File.join(current_dir, 'Berksfile')    
-    berksfile = Berkshelf::Berksfile.from_file(berksfile_path)   
+    berksfile_path = File.join(current_dir, 'Berksfile')
+    berksfile = Berkshelf::Berksfile.from_file(berksfile_path)
     berksfile.upload
   end
 end
 
-  require 'knife_cookbook_doc/rake_task'
+require 'knife_cookbook_doc/rake_task'
 
-  # With default options
-  KnifeCookbookDoc::RakeTask.new(:doc)
+# With default options
+KnifeCookbookDoc::RakeTask.new(:doc)
 
-  # Example with custom options
-  KnifeCookbookDoc::RakeTask.new(:doc) do |t|
-    t.options[:cookbook_dir] = './'
-    t.options[:constraints] = true
-    t.options[:output_file] = 'README.md'
-    #t.options[:template_file] = "#{File.dirname(__FILE__)}/templates/README.md.erb"
-  end
+# Example with custom options
+KnifeCookbookDoc::RakeTask.new(:doc) do |t|
+  t.options[:cookbook_dir] = './'
+  t.options[:constraints] = true
+  t.options[:output_file] = 'README.md'
+end
 
 # Default
 task default: %w(style integration:kitchen:all)
