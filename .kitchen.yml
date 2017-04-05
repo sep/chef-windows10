@@ -14,6 +14,8 @@ provisioner:
 
 verifier:
   name: inspec
+  format: junit
+  output: %{platform}_%{suite}_inspec.xml
 
 platforms:
   - name: windows-10
@@ -22,7 +24,7 @@ platforms:
     os_type: windows
     shell_type: powershell
     transport:
-        name: winrm    
+        name: winrm
 
 suites:
   - name: default
@@ -32,4 +34,3 @@ suites:
       inspec_tests:
         - test/smoke/default
     attributes:
-    
