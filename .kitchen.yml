@@ -15,7 +15,7 @@ provisioner:
 verifier:
   name: inspec
   format: junit
-  output: %{platform}_%{suite}_inspec.xml
+  output: '%{platform}_%{suite}_inspec.xml'
 
 platforms:
   - name: windows-10
